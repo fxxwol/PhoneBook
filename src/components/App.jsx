@@ -1,17 +1,22 @@
+import { Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
+import Layout from './Layout';
 import { Container } from '@mui/material';
-import ContactForm from './ContactForm';
-import ContactList from './Contacts/ContactList';
-import Filter from './Filter';
+
+const ContactsPage = lazy(() => import('../pages/ContactsPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
 
 function App() {
   return (
     <Container>
-      <h2>Phonebook</h2>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter
-      />
-      <ContactList />
+      <Routes>
+        <Route path="/" element={<Layout />} >
+        <Route path="/contacts" element={<ContactsPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        </Route> 
+      </Routes>
     </Container>
   );
 }
