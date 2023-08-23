@@ -8,7 +8,6 @@ import SyncLoader from 'react-spinners/SyncLoader';
 const ContactList = () => {
   const { contacts, isLoading } = useSelector(state => state.contacts);
   const filter = useSelector(state => state.filter);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,10 +16,15 @@ const ContactList = () => {
 
   const filterContacts = () => {
     const normalizedFilter = filter.toLowerCase();
+    if (!contacts.length) {
+      return [];
+    }
     return contacts
       .filter(contact => contact.name.toLowerCase().includes(normalizedFilter))
       .reverse();
   };
+
+  const filteredContacts = filterContacts();
   return (
     <>
       <SyncLoader
@@ -35,15 +39,29 @@ const ContactList = () => {
         }}
       />
       {!isLoading && (
-        <List>
-          {filterContacts().map(contact => {
-            return (
-              <Item key={contact.id} disableGutters>
-                <ContactItem contactItem={contact} />
-              </Item>
-            );
-          })}
-        </List>
+        <>
+          {(() => {
+            if (!contacts.length) {
+              return <h1>You don't have any contacts yet</h1>;
+            } else {
+              if (filteredContacts.length) {
+                return (
+                  <List>
+                    {filteredContacts.map(contact => {
+                      return (
+                        <Item key={contact.id} disableGutters>
+                          <ContactItem contactItem={contact} />
+                        </Item>
+                      );
+                    })}
+                  </List>
+                );
+              } else {
+                return <h1>You don't have such contact</h1>;
+              }
+            }
+          })()}
+        </>
       )}
     </>
   );

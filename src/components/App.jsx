@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import Layout from './Layout';
-import { Container } from '@mui/material';
 import { useAuth } from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { refresh } from 'redux/auth/authThunk';
@@ -21,7 +20,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Container>
+    <>
       {!isRefreshing && (
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -55,7 +54,7 @@ function App() {
           </Route>
         </Routes>
       )}
-    </Container>
+    </>
   );
 }
 

@@ -6,6 +6,8 @@ export const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 `;
 
 export const NavDiv = styled.div`
