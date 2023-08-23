@@ -5,6 +5,8 @@ import { Container } from '@mui/material';
 import { useAuth } from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { refresh } from 'redux/auth/authThunk';
+import { RestrictedRoute } from './RestricredRoute';
+import { PrivateRoute } from './PrivateRoute';
 
 const ContactsPage = lazy(() => import('../pages/ContactsPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
@@ -23,9 +25,33 @@ function App() {
       {!isRefreshing && (
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="/contacts" element={<ContactsPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<ContactsPage />}
+                />
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <RestrictedRoute
+                  redirectTo="/contacts"
+                  component={<RegisterPage />}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute
+                  redirectTo="/contacts"
+                  component={<LoginPage />}
+                />
+              }
+            />
           </Route>
         </Routes>
       )}
