@@ -38,7 +38,7 @@ function LoginForm() {
   });
 
   return (
-    <Form onSubmit={formik.handleSubmit}>
+    <Form onSubmit={formik.handleSubmit} autoComplete='on'>
       <FormControl>
         <InputLabel htmlFor="email">Email</InputLabel>
         <Input
@@ -49,7 +49,6 @@ function LoginForm() {
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          autoComplete="on"
           error={formik.touched.email && Boolean(formik.errors.email)}
         />
         {formik.touched.email && formik.errors.email ? (
@@ -66,7 +65,6 @@ function LoginForm() {
           error={formik.touched.password && Boolean(formik.errors.password)}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          autoComplete="on"
         />
         {formik.touched.password && formik.errors.password ? (
           <div>{formik.errors.password}</div>

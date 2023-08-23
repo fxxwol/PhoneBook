@@ -11,7 +11,6 @@ export const contactsSlice = createSlice({
         deletingId: null,
         error: null
     },
-    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchAllContacts.fulfilled, (state, { payload }) => {

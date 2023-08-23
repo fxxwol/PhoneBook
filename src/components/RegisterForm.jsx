@@ -4,15 +4,20 @@ import { SubmitBtn } from 'components/ContactForm/ContactForm.styled';
 import { useFormik } from 'formik';
 import { Form } from './ContactForm/ContactForm.styled';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { register } from 'redux/auth/authThunk';
 
 function RegisterForm() {
+  const dispatch = useDispatch();
+
+
   const RegisterSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, 'Too Short!')
       .max(50, 'Too Long!')
       .required('Required')
       .matches(
-        /^[a-zA-Zа-яА-Я]+((['-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
+        /^[a-zA-Zа-яА-Я\s'-]+$/,
         'Name can only contain letters'
       ),
     email: Yup.string().email('Invalid email').required('Required'),
@@ -41,7 +46,7 @@ function RegisterForm() {
       return errors;
     },
     onSubmit: user => {
-      console.log(user);
+      dispatch(register(user))
       formik.resetForm();
     },
   });
