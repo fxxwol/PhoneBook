@@ -1,10 +1,7 @@
-import LoginForm from 'components/LoginForm'
-import React from 'react'
+import LoginForm from 'components/AppBar/AuthForms/LoginForm';
 
 function LoginPage() {
-  return (
-    <LoginForm/>
-  )
+  return <LoginForm />;
 }
 
-export default LoginPage
+export default LoginPage;

@@ -12,7 +12,7 @@ function UserMenu() {
     <UserWrapper>
       <UserEmail>{email}</UserEmail>
       <AuthBtn>
-        <AuthLink onClick={() => dispatch(logout())}>Logout</AuthLink>
+        <AuthLink onClick={() => dispatch(logout())}>Sign out</AuthLink>
       </AuthBtn>
     </UserWrapper>
   );

@@ -5,10 +5,10 @@ function AuthNav() {
   return (
     <AuthWrap>
       <AuthBtn size="small">
-        <AuthLink to="/register">Register</AuthLink>
+        <AuthLink to="/register">Sign up</AuthLink>
       </AuthBtn>
       <AuthBtn size="small">
-        <AuthLink to="/login">Log In</AuthLink>
+        <AuthLink to="/login">Sign in</AuthLink>
       </AuthBtn>
     </AuthWrap>
   );

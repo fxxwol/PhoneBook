@@ -20,3 +20,12 @@ export const Item = styled(ListItem)`
   justify-content: space-between;
   border-radius: 4px;
 `;
+
+export const ContactsWrapper = styled.div`
+  margin: 100px auto;
+  width: fit-content;
+
+`
+export const HelperText = styled.h2`
+  color: rgba(80, 78, 78, 0.76);
+`;

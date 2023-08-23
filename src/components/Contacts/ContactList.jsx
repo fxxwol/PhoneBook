@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import ContactItem from './ContactItem';
-import { Item, List } from './ContactList.styled';
+import { ContactsWrapper, HelperText, Item, List } from './ContactList.styled';
 import { fetchAllContacts } from 'redux/contacts/contactsThunk';
 import SyncLoader from 'react-spinners/SyncLoader';
 
@@ -26,7 +26,7 @@ const ContactList = () => {
 
   const filteredContacts = filterContacts();
   return (
-    <>
+    <ContactsWrapper>
       <SyncLoader
         color={'#1976d2'}
         size={15}
@@ -42,7 +42,7 @@ const ContactList = () => {
         <>
           {(() => {
             if (!contacts.length) {
-              return <h1>You don't have any contacts yet</h1>;
+              return <HelperText>You don't have any contacts yet</HelperText>;
             } else {
               if (filteredContacts.length) {
                 return (
@@ -57,13 +57,13 @@ const ContactList = () => {
                   </List>
                 );
               } else {
-                return <h1>You don't have such contact</h1>;
+                return <HelperText>You don't have such contact</HelperText>;
               }
             }
           })()}
         </>
       )}
-    </>
+    </ContactsWrapper>
   );
 };
 

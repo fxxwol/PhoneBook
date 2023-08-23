@@ -10,7 +10,7 @@ function AppBar() {
   return (
     <Header>
       <NavDiv>
-        <HeaderTitle>Phone Book</HeaderTitle>
+        <HeaderTitle>PhoneBook</HeaderTitle>
         <Navigation />
       </NavDiv>
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
