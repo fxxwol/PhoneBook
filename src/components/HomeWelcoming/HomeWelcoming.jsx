@@ -3,6 +3,7 @@ import {
   BlinkCaret,
   HomeTitle,
   HomeWrapper,
+  TextWrapper,
   TypingText,
 } from './HomeWelcoming.styled';
 
@@ -37,13 +38,15 @@ function HomeWelcoming() {
   }, []);
 
   return (
-    <HomeWrapper>
-      <HomeTitle>Unlock Your PhoneBook</HomeTitle>
-      <TypingText>
-        {displayMessage}
-        {isTyping && <BlinkCaret>|</BlinkCaret>}
-      </TypingText>
-    </HomeWrapper>
+   <HomeWrapper>
+      <TextWrapper>
+        <HomeTitle>Unlock Your PhoneBook</HomeTitle>
+        <TypingText>
+          {displayMessage}
+          {isTyping && <BlinkCaret>|</BlinkCaret>}
+        </TypingText>
+      </TextWrapper>
+   </HomeWrapper>
   );
 }
 

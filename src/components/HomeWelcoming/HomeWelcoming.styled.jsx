@@ -1,10 +1,19 @@
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
+import img from '../../img/homeImg.png';
 export const HomeTitle = styled.h2`
   color: #021d38;
   font-size: 40px;
   margin-bottom: 40px;
-  margin-left: auto;
+`;
+
+export const HomeWrapper = styled.div`
+  width: 100%;
+  height: 400px;
+  background-image: url(${img});
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
 `;
 
 const fadeIn = keyframes`
@@ -15,17 +24,14 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `;
-export const HomeWrapper = styled.div`
-  width: 1000px;
-  margin: 100px auto;
+export const TextWrapper = styled.div`
+  margin-top: 100px;
   padding: 40px;
-  background-color: #5b98fb9e;
-  box-shadow: 0 4px 6px rgba(15, 3, 146, 0.895);
-  border-radius: 8px;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  width: 500px;
+  /* background-color: #5b98fb9e; */
+  /* box-shadow: 0 4px 6px rgba(15, 3, 146, 0.895); */
+  /* border-radius: 8px; */
+  /* text-align: left; */
   animation: ${fadeIn} 1s ease-in;
 `;
 
@@ -60,4 +66,3 @@ export const BlinkCaret = styled.span`
   border-right: 0.15em solid #021d38;
   animation: ${blinkCaretAnimation} 0.75s step-end infinite;
 `;
-
