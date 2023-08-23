@@ -4,8 +4,12 @@ import { SubmitBtn } from 'components/ContactForm/ContactForm.styled';
 import { useFormik } from 'formik';
 import { Form } from './ContactForm/ContactForm.styled';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { login } from 'redux/auth/authThunk';
 
 function LoginForm() {
+  const dispatch = useDispatch();
+
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string()
@@ -32,13 +36,13 @@ function LoginForm() {
       return errors;
     },
     onSubmit: user => {
-      console.log(user);
+      dispatch(login(user))
       formik.resetForm();
     },
   });
 
   return (
-    <Form onSubmit={formik.handleSubmit} autoComplete='on'>
+    <Form onSubmit={formik.handleSubmit}>
       <FormControl>
         <InputLabel htmlFor="email">Email</InputLabel>
         <Input
@@ -49,6 +53,7 @@ function LoginForm() {
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          autoComplete="on"
           error={formik.touched.email && Boolean(formik.errors.email)}
         />
         {formik.touched.email && formik.errors.email ? (
@@ -65,6 +70,7 @@ function LoginForm() {
           error={formik.touched.password && Boolean(formik.errors.password)}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          autoComplete="on"
         />
         {formik.touched.password && formik.errors.password ? (
           <div>{formik.errors.password}</div>
