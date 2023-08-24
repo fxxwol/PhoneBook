@@ -46,7 +46,7 @@ function LoginForm() {
       formik.resetForm();
     },
   });
-console.log(isLogging)
+  
   return (
     <AuthFormCard>
       <FormTitle>Sign in to PhoneBook</FormTitle>
