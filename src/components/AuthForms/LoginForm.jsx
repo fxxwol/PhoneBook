@@ -2,19 +2,21 @@ import { FormControl, Input, InputLabel } from '@mui/material';
 import { SubmitBtn } from 'components/ContactForm/ContactForm.styled';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { register } from 'redux/auth/authThunk';
+import { login } from 'redux/auth/authThunk';
 import * as Yup from 'yup';
-import { AuthForm, AuthFormCard, AuthHelperText, FormTitle } from './AuthForms.styled';
+import {
+  AuthForm,
+  AuthFormCard,
+  AuthHelperText,
+  FormTitle,
+} from './AuthForms.styled';
+import { useAuth } from 'hooks/useAuth';
 
-function RegisterForm() {
+function LoginForm() {
   const dispatch = useDispatch();
+  const { isLogging } = useAuth();
 
-  const RegisterSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(3, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Required')
-      .matches(/^[a-zA-Zа-яА-Я\s'-]+$/, 'Name can only contain letters'),
+  const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string()
       .required('No password provided.')
@@ -24,14 +26,13 @@ function RegisterForm() {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
       email: '',
       password: '',
     },
     validate: values => {
       const errors = {};
       try {
-        RegisterSchema.validateSync(values, { abortEarly: false });
+        LoginSchema.validateSync(values, { abortEarly: false });
       } catch (validationErrors) {
         validationErrors.inner.forEach(error => {
           errors[error.path] = error.message;
@@ -41,32 +42,15 @@ function RegisterForm() {
       return errors;
     },
     onSubmit: user => {
-      dispatch(register(user));
+      dispatch(login(user));
       formik.resetForm();
     },
   });
-
+console.log(isLogging)
   return (
     <AuthFormCard>
-      <FormTitle>Sign up to PhoneBook</FormTitle>
+      <FormTitle>Sign in to PhoneBook</FormTitle>
       <AuthForm onSubmit={formik.handleSubmit}>
-        <FormControl>
-          <InputLabel htmlFor="name">Name</InputLabel>
-          <Input
-            size="small"
-            type="text"
-            id="name"
-            name="name"
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            autoComplete="on"
-            error={formik.touched.name && Boolean(formik.errors.name)}
-          />
-          {formik.touched.name && formik.errors.name ? (
-            <AuthHelperText>{formik.errors.name}</AuthHelperText>
-          ) : null}
-        </FormControl>
         <FormControl>
           <InputLabel htmlFor="email">Email</InputLabel>
           <Input
@@ -100,10 +84,12 @@ function RegisterForm() {
             <AuthHelperText>{formik.errors.password}</AuthHelperText>
           ) : null}
         </FormControl>
-        <SubmitBtn type="submit">Sign up</SubmitBtn>
+        <SubmitBtn type="submit" disabled={isLogging}>
+          Sign in
+        </SubmitBtn>
       </AuthForm>
     </AuthFormCard>
   );
 }
 
-export default RegisterForm;
+export default LoginForm;

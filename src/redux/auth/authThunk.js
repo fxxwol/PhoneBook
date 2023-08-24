@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Notify } from 'notiflix/build/notiflix-report-aio';
+import Notiflix from "notiflix";
 
 const setAuthHeader = token => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
@@ -14,12 +14,11 @@ export const register = createAsyncThunk(
     'auth/register',
     async (credentials, thunkAPI) => {
         try {
-            console.log('hi')
             const res = await axios.post('/users/signup', credentials);
             setAuthHeader(res.data.token);
             return res.data;
         } catch (error) {
-            Notify.failure('Bad Request. Please check your input.');
+            Notiflix.Notify.failure('User with such email is already registered. Please, try again');
             return thunkAPI.rejectWithValue(error.message);
         }
     }
@@ -31,12 +30,10 @@ export const login = createAsyncThunk(
         try {
             const res = await axios.post('/users/login', credentials)
             setAuthHeader(res.data.token);
-            console.log('success')
             return res.data;
         } catch (error) {
-            console.log('error')
-            Notify.failure('Your email or password is invalid')
-            thunkAPI.rejectWithValue(error.message)
+            Notiflix.Notify.failure('Your email or password is invalid')
+            return thunkAPI.rejectWithValue(error.message)
         }
     }
 )

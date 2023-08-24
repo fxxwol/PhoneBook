@@ -1,4 +1,4 @@
-import RegisterForm from 'components/AppBar/AuthForms/RegisterForm';
+import RegisterForm from 'components/AuthForms/RegisterForm';
 
 function RegisterPage() {
   return <RegisterForm />;

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form, SubmitBtn } from './ContactForm.styled';
 import { addContact } from 'redux/contacts/contactsThunk';
 import { SyncLoader } from 'react-spinners';
+import Notiflix from 'notiflix';
 
 function ContactForm() {
   const {contacts, isAdding} = useSelector(state => state.contacts);
@@ -34,7 +35,7 @@ function ContactForm() {
     validate: validate,
     onSubmit: ({ name, number }) => {
       if (contacts.find(contact => contact.name === name)) {
-        alert(`${name} is already in your contacts`);
+        Notiflix.Notify.failure(`${name} is already in your contacts`);
         return;
       }
       dispatch(addContact({ name, number }));

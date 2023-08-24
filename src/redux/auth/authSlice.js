@@ -8,6 +8,7 @@ export const authSlice = createSlice({
         token: null,
         isLoggedIn: false,
         isRefreshing: false,
+        isLogging: false
     },
     extraReducers: (builder) => {
         builder
@@ -15,11 +16,25 @@ export const authSlice = createSlice({
                 state.user = action.payload.user;
                 state.token = action.payload.token;
                 state.isLoggedIn = true
+                state.isLogging = false;
+            })
+            .addCase(register.pending, (state) => {
+                state.isLogging = true;
+            })
+            .addCase(register.rejected, (state) => {
+                state.isLogging = false;
             })
             .addCase(login.fulfilled, (state, action) => {
                 state.user = action.payload.user;
                 state.token = action.payload.token;
                 state.isLoggedIn = true;
+                state.isLogging = false;
+            })
+            .addCase(login.pending, (state) => {
+                state.isLogging = true;
+            })
+            .addCase(login.rejected, (state) => {
+                state.isLogging = false;
             })
             .addCase(refresh.fulfilled, (state, action) => {
                 state.user = action.payload;

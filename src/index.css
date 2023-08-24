@@ -4,8 +4,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
 
 code {
@@ -13,10 +12,16 @@ code {
     monospace;
 }
 
-h1{
-margin: 0;
+h1 {
+  margin: 0;
 }
 
-a{
+a {
   text-decoration: none;
 }
+
+/* #NotiflixNotifyWrap {
+  margin-top: 10px;
+  margin-left: calc(100vw - 300px);
+  position: absolute;
+} */

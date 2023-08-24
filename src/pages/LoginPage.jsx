@@ -1,4 +1,4 @@
-import LoginForm from 'components/AppBar/AuthForms/LoginForm';
+import LoginForm from 'components/AuthForms/LoginForm';
 
 function LoginPage() {
   return <LoginForm />;
