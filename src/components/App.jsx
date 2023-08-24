@@ -11,6 +11,7 @@ const ContactsPage = lazy(() => import('../pages/ContactsPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const HomePage = lazy(() => import('../pages/HomePage'));
+const NotFoundPage = lazy(() => import('../pages/NotFound/NotFound'));
 
 function App() {
   const { isRefreshing } = useAuth();
@@ -53,6 +54,7 @@ function App() {
                 />
               }
             />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
       )}
