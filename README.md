@@ -1,7 +1,7 @@
 # PhoneBook
 ## Технології
 
-Проект був створений за допомогою [React](https://uk.legacy.reactjs.org/), для керування станом використано[Redux](https://redux.js.org/), а для стилізації було обрано бібліотеку [MUI](https://mui.com/)
+Проект був створений за допомогою [React](https://uk.legacy.reactjs.org/) , для керування станом використано [Redux](https://redux.js.org/) , а для стилізації було обрано бібліотеку [MUI](https://mui.com/)
 
 ## Опис проєкту
 

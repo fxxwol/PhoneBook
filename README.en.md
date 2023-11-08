@@ -4,7 +4,7 @@ Here is an English translation:
 
 ## Technologies
 
-The project was created using [React](https://reactjs.org/), [Redux](https://redux.js.org/) was used for state management, and [MUI](https://mui.com/) was chosen for styling.
+The project was created using [React](https://reactjs.org/) , [Redux](https://redux.js.org/) was used for state management, and [MUI](https://mui.com/) was chosen for styling.
 
 ## Project Description
 
